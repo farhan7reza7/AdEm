@@ -8,13 +8,13 @@ require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 require 'factory_bot_rails'
 require 'faker'
-# Requires supporting ruby files with custom matchers and macros, etc, in
+# Requires supporting Ruby files with custom matchers and macros, etc., in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
 # run as spec files by default. This means that files in spec/support that end
 # in _spec.rb will both be required and run as specs, causing the specs to be
 # run twice. It is recommended that you do not name files matching this glob to
 # end with _spec.rb. You can configure this pattern with the --pattern
-# option on the command line or in ~/.rspec, .rspec or `.rspec-local`.
+# option on the command line or in ~/.rspec, .rspec, or `.rspec-local`.
 #
 # The following line is provided for convenience purposes. It has the downside
 # of increasing the boot-up time by auto-requiring all files in the support
@@ -31,11 +31,12 @@ rescue ActiveRecord::PendingMigrationError => e
   puts e.to_s.strip
   exit 1
 end
+
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{Rails.root}/spec/fixtures"
 
-  # If you're not using ActiveRecord, or you'd prefer not to run each of your
+  # If you're not using ActiveRecord or prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
   config.use_transactional_fixtures = true
@@ -43,17 +44,19 @@ RSpec.configure do |config|
   # You can uncomment this line to turn off ActiveRecord support entirely.
   # config.use_active_record = false
   config.include ActionDispatch::TestProcess
-  # RSpec Rails can automatically mix in different behaviours to your tests
+
+  # RSpec Rails can automatically mix in different behaviors to your tests
   # based on their file location, for example enabling you to call `get` and
   # `post` in specs under `spec/controllers`.
   include Warden::Test::Helpers
   Warden.test_mode!
-  # You can disable this behaviour by removing the line below, and instead
+
+  # You can disable this behavior by removing the line below, and instead
   # explicitly tag your specs with their type, e.g.:
   #
-  #     RSpec.describe UsersController, type: :controller do
-  #       # ...
-  #     end
+  # RSpec.describe UsersController, type: :controller do
+  #   # ...
+  # end
   #
   # The different available types are documented in the features, such as in
   # https://relishapp.com/rspec/rspec-rails/docs
@@ -61,8 +64,9 @@ RSpec.configure do |config|
 
   # Filter lines from Rails gems in backtraces.
   config.filter_rails_from_backtrace!
-  # arbitrary gems may also be filtered via:
+  # Arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+
   # Shoulda Matchers
   Shoulda::Matchers.configure do |shoulda_config|
     shoulda_config.integrate do |with|
@@ -72,7 +76,5 @@ RSpec.configure do |config|
   end
 
   # FactoryBot
-  RSpec.configure do |rspec_config|
-    rspec_config.include FactoryBot::Syntax::Methods
-  end
+  config.include FactoryBot::Syntax::Methods
 end
